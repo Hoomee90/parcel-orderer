@@ -50,11 +50,19 @@ namespace ParcelOrder.Tests
 		}
 		
 		[TestMethod]
-		public void Volume_CorrectlyCalculatesVolume_Void()
+		public void Volume_CorrectlyCalculatesVolume_Int()
 		{
 			Parcel newParcel = new(new [] {3, 2, 10}, 3);
 			int expected = 60;
 			Assert.AreEqual(expected, newParcel.Volume());
+		}
+		
+		[TestMethod]
+		public void CostToShip_CorrectlyCalculatesCostToShip_Int()
+		{
+			Parcel newParcel = new(new [] {3, 2, 6}, 16);
+			int expected = 100;
+			Assert.AreEqual(expected, newParcel.CostToShip());
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Http.Features;
 
@@ -17,6 +18,14 @@ namespace ParcelOrder.Models
 		public int Volume()
 		{
 			return Dimensions.Aggregate((x, y) => x * y);
+		}
+		
+		public int CostToShip()
+		{
+			double weightFactor = Math.Sqrt(Weight);
+			double volumeFactor = Math.Sqrt(Volume());
+			
+			return (int)Math.Ceiling(Math.Pow(weightFactor + volumeFactor, 2));
 		}
 	}
 }
