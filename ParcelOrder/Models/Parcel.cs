@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Http.Features;
 
 namespace ParcelOrder.Models
@@ -11,6 +12,11 @@ namespace ParcelOrder.Models
 		{
 			Dimensions = dimensions;
 			Weight = weight;
+		}
+		
+		public int Volume()
+		{
+			return Dimensions.Aggregate((x, y) => x * y);
 		}
 	}
 }

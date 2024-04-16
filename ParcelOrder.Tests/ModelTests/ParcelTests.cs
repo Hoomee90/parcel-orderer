@@ -6,6 +6,7 @@ namespace ParcelOrder.Tests
 	[TestClass]
 	public class ClassNameTests
 	{
+		[TestMethod]
 		public void ParcelConstructor_CreateInstanceOfParcel_Parcel()
 		{
 			Parcel newParcel = new(new[] {1, 1, 1}, 1);
@@ -46,6 +47,14 @@ namespace ParcelOrder.Tests
 			int newWeight = 6;
 			newParcel.Weight = newWeight;
 			Assert.AreEqual(newWeight, newParcel.Weight);
+		}
+		
+		[TestMethod]
+		public void Volume_CorrectlyCalculatesVolume_Void()
+		{
+			Parcel newParcel = new(new [] {3, 2, 10}, 3);
+			int expected = 60;
+			Assert.AreEqual(expected, newParcel.Volume());
 		}
 	}
 }
