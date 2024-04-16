@@ -1,11 +1,18 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using ParcelOrder.Models;
 
 namespace ParcelOrder.Tests
 {
 	[TestClass]
-	public class ClassNameTests
+	public class ParcelTests : IDisposable 
 	{
+		public void Dispose()
+		{
+			Parcel.ClearAll();
+		}
+		
 		[TestMethod]
 		public void ParcelConstructor_CreateInstanceOfParcel_Parcel()
 		{
@@ -63,6 +70,28 @@ namespace ParcelOrder.Tests
 			Parcel newParcel = new(new [] {3, 2, 6}, 16);
 			int expected = 100;
 			Assert.AreEqual(expected, newParcel.CostToShip());
+		}
+		
+		[TestMethod]
+		public void GetAll_ReturnsAllParcelInstances_List()
+		{
+			Parcel parcel1 = new(new[] {2, 2, 9}, 12);
+			Parcel parcel2 = new(new[] {21, 3, 9}, 30);
+			Parcel parcel3 = new(new[] {1, 3, 9}, 100);
+			List<Parcel> expected = new List<Parcel> { parcel1, parcel2, parcel3 };
+			List<Parcel> actualResult = Parcel.GetAll();
+			CollectionAssert.AreEqual(expected, actualResult);
+		}
+		
+		[TestMethod]
+		public void ClearAll_DeletesAllParcelInList_Void()
+		{
+			_ = new Parcel(new[] {2, 2, 9}, 12);
+			_ = new Parcel(new[] {21, 3, 9}, 30);
+			_ = new Parcel(new[] {1, 3, 9}, 100);
+			List<Parcel> expected = new() { };
+			Parcel.ClearAll();
+			CollectionAssert.AreEqual(expected, Parcel.GetAll());
 		}
 	}
 }
