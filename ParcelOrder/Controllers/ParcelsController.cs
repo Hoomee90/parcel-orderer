@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ParcelOrder.Models;
 
-namespace ToDoList.Controllers
+namespace ParcelOrder.Controllers
 {
 		public class ParcelsController : Controller
 		{
@@ -21,9 +21,9 @@ namespace ToDoList.Controllers
 			}
 
 			[HttpPost("/parcels")]
-			public ActionResult Create(int[] dimensions, int weight)
+			public ActionResult Create(int length, int width, int height, int weight)
 			{
-				Parcel _ = new(dimensions, weight);
+				Parcel _ = new(new[] {length, width, height}, weight);
 				return RedirectToAction("Index");
 			}
 		}
