@@ -8,7 +8,7 @@ namespace ParcelOrder.Tests
 	{
 		public void ParcelConstructor_CreateInstanceOfParcel_Parcel()
 		{
-			Parcel newParcel = new(new[] {1, 1, 1});
+			Parcel newParcel = new(new[] {1, 1, 1}, 1);
 			Assert.AreEqual(typeof(Parcel), newParcel.GetType());
 		}
 		
@@ -16,7 +16,7 @@ namespace ParcelOrder.Tests
 		public void GetDimensions_ReturnsDimensions_IntArray()
 		{
 			int[] dimensions = {3, 5, 7};
-			Parcel newParcel = new(dimensions);
+			Parcel newParcel = new(dimensions, 1);
 			int[] result = newParcel.Dimensions;
 			CollectionAssert.AreEqual(dimensions, result);
 		}
@@ -24,10 +24,28 @@ namespace ParcelOrder.Tests
 		[TestMethod]
 		public void SetDimensions_SetsValueOfDimensions_Void()
 		{
-			Parcel newParcel = new(new[] {3, 5, 7});
+			Parcel newParcel = new(new[] {3, 5, 7}, 1);
 			int[] newDimensions = {4, 13, 9};
 			newParcel.Dimensions = newDimensions;
 			CollectionAssert.AreEqual(newDimensions, newParcel.Dimensions);
+		}
+		
+		[TestMethod]
+		public void GetWeight_ReturnsWeight_Int()
+		{
+			int weight = 3;
+			Parcel newParcel = new(new [] {1, 1, 1}, weight);
+			int result = newParcel.Weight;
+			Assert.AreEqual(weight, result);
+		}
+		
+		[TestMethod]
+		public void SetWeight_SetsValueOfWeight_Void()
+		{
+			Parcel newParcel = new(new [] {1, 1, 1}, 3);
+			int newWeight = 6;
+			newParcel.Weight = newWeight;
+			Assert.AreEqual(newWeight, newParcel.Weight);
 		}
 	}
 }
