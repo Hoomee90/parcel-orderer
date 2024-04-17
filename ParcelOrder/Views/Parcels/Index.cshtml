@@ -22,7 +22,10 @@
         <ul class="list-group">
           @foreach (Parcel parcel in Model)
           { 
-            <li class="list-group-item list-group-item-light">@parcel.Weight</li>
+            <li class="list-group-item list-group-item-light">
+              <span class="badge text-bg-success rounded-pill">$@parcel.CostToShip()</span>
+              @parcel.Volume() cm<sup>3</sup> Parcel - @parcel.Weight kg
+            </li>
           }
         </ul>
         <div class="row mt-3 justify-content-evenly">
