@@ -68,7 +68,7 @@ namespace ParcelOrder.Tests
 		public void CostToShip_CorrectlyCalculatesCostToShip_Int()
 		{
 			Parcel newParcel = new(new [] {3, 2, 6}, 16);
-			int expected = 100;
+			int expected = 24;
 			Assert.AreEqual(expected, newParcel.CostToShip());
 		}
 		

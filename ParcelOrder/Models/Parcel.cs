@@ -29,7 +29,7 @@ namespace ParcelOrder.Models
 			double weightFactor = Math.Sqrt(Weight);
 			double volumeFactor = Math.Sqrt(Volume());
 			
-			return (int)Math.Ceiling(Math.Pow(weightFactor + volumeFactor, 2));
+			return (int)Math.Ceiling(weightFactor * volumeFactor);
 		}
 		
 		public static List<Parcel> GetAll()
