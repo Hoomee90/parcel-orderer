@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
   <head>
     <meta charset="utf-8">
     <title>Your Parcel</title>
@@ -9,7 +9,31 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous">
   </head>
-  <body>
-    
+  <body class="container">
+    @using ParcelOrder.Models;
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Cart</h1>
+
+        @if (Model.Count == 0)
+        {
+          <p class="card-text">You have nothing in your cart.</p>
+        }
+        <ul class="list-group">
+          @foreach (Parcel parcel in Model)
+          { 
+            <li class="list-group-item list-group-item-light">@parcel.Weight</li>
+          }
+        </ul>
+        <div class="row mt-3 justify-content-evenly">
+          <div class="col-auto">
+            <a href='parcels/order' class="btn btn-outline-success">Order another parcel</a>
+          </div>
+          <div class="col-auto">
+            <a href='/' class="btn btn-outline-primary">Return home</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
